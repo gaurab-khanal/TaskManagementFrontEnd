@@ -42,7 +42,7 @@ function Pending() {
 
       getPendingTask();
     }
-  }, [showModel, trackUpdate, trackDelete]);
+  }, [showModel, trackUpdate, trackDelete, pendingTask]);
 
 
   const editAction = (task) => {
@@ -108,7 +108,7 @@ function Pending() {
 
         <ToastContainer
           position="bottom-right"
-          autoClose={2000}
+          autoClose={500}
           hideProgressBar={false}
           newestOnTop={false}
           closeOnClick
