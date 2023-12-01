@@ -8,8 +8,9 @@ import 'react-toastify/dist/ReactToastify.css';
 const apiURL = import.meta.env.VITE_API_BACKEND;
 
 function Completed() {
-  const [showModel, setShowModel] = useState(false);
 
+
+  const [showModel, setShowModel] = useState(false);
   const [completedTask, setCompletedTask] = useState([]);
   const [taskInfo, setTaskInfo] = useState([]);
   const [trackUpdate, setTrackUpdate] = useState(false);
@@ -17,9 +18,8 @@ function Completed() {
 
   
 
-  const getUnstartedTask = () => {
+  const getCompletedTask = () => {
     axios.get(`${apiURL}/category/completed`).then(res => {
-      console.log(res.data.task);
       setCompletedTask(res.data.task);
     }).catch(err => {
       console.log(err);
@@ -41,10 +41,9 @@ function Completed() {
 
   useEffect(() => {
     if (completedTask && !showModel) {
-
-      getUnstartedTask();
+      getCompletedTask();
     }
-  }, [showModel, trackUpdate, trackDelete]);
+  }, [showModel, trackUpdate, trackDelete, completedTask]);
   
   const editAction = (task) => {
     console.log("Edit: ", task.id);
@@ -108,7 +107,7 @@ function Completed() {
 
         <ToastContainer
           position="bottom-right"
-          autoClose={2000}
+          autoClose={500}
           hideProgressBar={false}
           newestOnTop={false}
           closeOnClick

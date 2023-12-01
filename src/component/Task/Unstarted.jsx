@@ -17,7 +17,6 @@ function Unstarted() {
 
   const getUnstartedTask = () => {
     axios.get(`${apiURL}/category/unstarted`).then(res => {
-      console.log(res.data.task);
       setUnstartedTask(res.data.task);
     }).catch(err => {
       console.log(err);
@@ -42,7 +41,7 @@ function Unstarted() {
 
       getUnstartedTask();
     }
-  }, [showModel, trackUpdate, trackDelete]);
+  }, [showModel, trackUpdate, trackDelete, unstartedTask]);
 
   const editAction = (task) => {
     console.log("Edit: ", task.id);
@@ -107,7 +106,7 @@ function Unstarted() {
 
         <ToastContainer
           position="bottom-right"
-          autoClose={2000}
+          autoClose={50}
           hideProgressBar={false}
           newestOnTop={false}
           closeOnClick
